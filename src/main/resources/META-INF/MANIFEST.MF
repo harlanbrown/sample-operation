@@ -1,0 +1,9 @@
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .
+Manifest-Version: 1.0
+Bundle-Vendor: org.nuxeo.sample
+Bundle-Version: 1.0.0
+Bundle-Name: sample-operation
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.nuxeo.sample.sample-operation;singleton=true
+Nuxeo-Component: OSGI-INF/operations-contrib.xml
