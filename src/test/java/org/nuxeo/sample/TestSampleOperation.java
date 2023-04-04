@@ -24,10 +24,13 @@ import org.nuxeo.runtime.test.runner.Features;
 import org.nuxeo.runtime.test.runner.FeaturesRunner;
 import java.util.HashMap;
 import java.util.Map;
+import org.nuxeo.ecm.platform.audit.AuditFeature;
 
 @RunWith(FeaturesRunner.class)
-@Features(AutomationFeature.class)
+@Features({ AuditFeature.class })
 @RepositoryConfig(init = DefaultRepositoryInit.class, cleanup = Granularity.METHOD)
+@Deploy("org.nuxeo.ecm.automation.core")
+@Deploy("org.nuxeo.ecm.automation.features")
 @Deploy("org.nuxeo.sample.sample-operation")
 public class TestSampleOperation {
 
