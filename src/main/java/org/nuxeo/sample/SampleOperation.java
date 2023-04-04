@@ -26,43 +26,6 @@ public class SampleOperation {
 
     @OperationMethod
     public DocumentModel run(DocumentModel input){
-        input.setPropertyValue("dc:title", "title");
-
-        Long length = Long.parseLong("10485760");
-   			Blob b = createBlobFromDigest("edd29f1b7b353e913dfc73f049008a48","file",length);
-        input.setPropertyValue("file:content", (SimpleManagedBlob) b);
-
-        input = session.saveDocument(input);
         return input;
     }
-
-
-
-
-    protected Blob createBlobFromDigest(String digest, String filename, Long length) {
-        // Get the BlobProvider id
-        BlobManager blobManager = Framework.getLocalService(BlobManager.class);
-        Map<String, BlobProvider> mapBlob = blobManager.getBlobProviders();
-        String blobProviderId = null;
-        for (Entry<String, BlobProvider> entry : mapBlob.entrySet()) {
-            blobProviderId = entry.getKey();
-            break;
-        }
-
-        // Create BlobInfo
-        BlobInfo info = new BlobInfo();
-        info.key = blobProviderId + ":" + digest;
-        info.digest = digest;
-        info.filename = filename;
-        info.length = length;
-        try {
-            info.mimeType = Framework.getService(MimetypeRegistry.class).getMimetypeFromFilename(filename);
-        } catch (MimetypeNotFoundException e) {
-//            log.warn("Mimetype not found for file " + filename);
-        }
-
-        return new SimpleManagedBlob(info);
-    }
-
-
 }

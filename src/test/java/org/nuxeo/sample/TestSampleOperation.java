@@ -29,8 +29,8 @@ import java.util.Map;
 @Features(AutomationFeature.class)
 @RepositoryConfig(init = DefaultRepositoryInit.class, cleanup = Granularity.METHOD)
 @Deploy("org.nuxeo.sample.sample-operation")
-@Deploy("org.nuxeo.sample.sample-operation:test-user-directories-contrib.xml")
 public class TestSampleOperation {
+
     @Inject
     protected CoreSession session;
 
@@ -42,12 +42,6 @@ public class TestSampleOperation {
         DocumentModel ws1 = session.createDocumentModel("/default-domain/workspaces", "ws1", "Workspace");
         ws1 = session.createDocument(ws1);
         
-        // give 'jdoe' Everything access to the workspace and its contents
-        ACE ace = ACE.builder("jdoe", SecurityConstants.EVERYTHING).build();
-        ACP acp = ws1.getACP();
-        acp.addACE(ACL.LOCAL_ACL, ace);
-        ws1.setACP(acp, true);
-
         DocumentModel fil1 = session.createDocumentModel("/default-domain/workspaces/ws1", "fil1", "File");
         fil1 = session.createDocument(fil1);
 
@@ -56,8 +50,6 @@ public class TestSampleOperation {
 
     @Test
     public void shouldCallOperation() throws OperationException {
-        // open session as 'jdoe' so the op runs as that user
-        CoreSession session = CoreInstance.getCoreSession(this.session.getRepositoryName(), "jdoe");
         OperationContext ctx = new OperationContext(session);
         Map<String, Object> params = new HashMap<>();
         DocumentModel input = session.getDocument(new PathRef("/default-domain/workspaces/ws1/fil1"));
