@@ -4,7 +4,7 @@
   <parent>
     <groupId>org.nuxeo</groupId>
     <artifactId>nuxeo-parent</artifactId>
-    <version>2021.58.2</version>
+    <version>2021.52.8</version>
   </parent>
   <artifactId>sample-operation</artifactId>
   <groupId>org.nuxeo.sample</groupId>
@@ -20,6 +20,7 @@
       <groupId>org.nuxeo.ecm.automation</groupId>
       <artifactId>nuxeo-automation-features</artifactId>
     </dependency>
+<!--
     <dependency>
       <groupId>org.nuxeo.ecm.platform</groupId>
       <artifactId>nuxeo-platform-notification</artifactId>
@@ -28,10 +29,11 @@
       <groupId>org.nuxeo.ecm.platform</groupId>
       <artifactId>nuxeo-platform-url</artifactId>
     </dependency>
+-->
     <dependency>
       <groupId>org.nuxeo.ecm.automation</groupId>
-      <artifactId>nuxeo-automation-test</artifactId>
-      <scope>test</scope>
+      <artifactId>nuxeo-automation-jsf</artifactId>
+      <version>2021.52.8</version>
     </dependency>
   </dependencies>
 </project>
